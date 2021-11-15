@@ -35,6 +35,8 @@ jobs:
           python -m pip install --upgrade pip
           git clone  --branch xinet https://github.com/daobook/peps.git draft
           pip install -r draft/requirements.txt
+          chmod +x build.sh 
+          chmod +x clean.sh
 
       - name: 🔧 Build PEPs
         run: |
