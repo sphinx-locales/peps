@@ -39,11 +39,11 @@ jobs:
       - name: 🔧 Build PEPs
         run: |
           rm -rf draft/locales
-          ./build.sh
+          sudo ./build.sh
 
         # remove the .doctrees folder when building for deployment as it takes two thirds of disk space
       - name: 🔥 Clean up files
-        run: ./clean.sh
+        run: sudo ./clean.sh
           
       - name: 🚀 Deploy to GitHub pages
         uses: JamesIves/github-pages-deploy-action@4.1.1
