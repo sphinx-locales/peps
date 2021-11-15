@@ -1,0 +1,677 @@
+
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PEP 12 – Sample reStructuredText PEP Template | peps.python.org</title>
+    <link rel="shortcut icon" href="../_static/py.png"/>
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/mq.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <meta name="description" content="Python Enhancement Proposals (PEPs)"/>
+</head>
+<body>
+    <section id="pep-page-section">
+        <header>
+            <h1>Python Enhancement Proposals</h1>
+            <ul class="breadcrumbs">
+                <li><a href="https://www.python.org/" title="The Python Programming Language">Python</a> &raquo; </li>
+                <li><a href="../pep-0000/">PEP Index</a> &raquo; </li>
+                <li>PEP 12 – Sample reStructuredText PEP Template</li>
+            </ul>
+        </header>
+        <article>
+            <section id="pep-content">
+<h1 class="page-title">PEP 12 – Sample reStructuredText PEP Template</h1>
+<dl class="rfc2822 field-list simple">
+<dt class="field-odd">PEP</dt>
+<dd class="field-odd">12</dd>
+<dt class="field-even">Title</dt>
+<dd class="field-even">reStructuredText PEP 模板样本</dd>
+<dt class="field-odd">Author</dt>
+<dd class="field-odd">David Goodger &lt;goodger&#32;&#97;t&#32;python.org&gt;,
+Barry Warsaw &lt;barry&#32;&#97;t&#32;python.org&gt;,
+Brett Cannon &lt;brett&#32;&#97;t&#32;python.org&gt;</dd>
+<dt class="field-even">Status</dt>
+<dd class="field-even">Active</dd>
+<dt class="field-odd">Type</dt>
+<dd class="field-odd">Process</dd>
+<dt class="field-even">Created</dt>
+<dd class="field-even">05-Aug-2002</dd>
+<dt class="field-odd">Post-History</dt>
+<dd class="field-odd">30-Aug-2002</dd>
+</dl>
+<hr class="docutils" />
+<section id="contents">
+<h2>Contents</h2>
+<ul class="simple">
+<li><a class="reference internal" href="#abstract">摘要</a></li>
+<li><a class="reference internal" href="#rationale">理论依据</a></li>
+<li><a class="reference internal" href="#how-to-use-this-template">如何使用此模板</a></li>
+<li><a class="reference internal" href="#restructuredtext-pep-formatting-requirements">ReStructuredText PEP 格式化要求</a><ul>
+<li><a class="reference internal" href="#general">通用</a></li>
+<li><a class="reference internal" href="#section-headings">节标题</a></li>
+<li><a class="reference internal" href="#paragraphs">段落</a></li>
+<li><a class="reference internal" href="#inline-markup">行内标记</a></li>
+<li><a class="reference internal" href="#block-quotes">块引用</a></li>
+<li><a class="reference internal" href="#literal-blocks">Literal Blocks</a></li>
+<li><a class="reference internal" href="#lists">Lists</a></li>
+<li><a class="reference internal" href="#tables">Tables</a></li>
+<li><a class="reference internal" href="#hyperlinks">Hyperlinks</a></li>
+<li><a class="reference internal" href="#footnotes">Footnotes</a></li>
+<li><a class="reference internal" href="#images">Images</a></li>
+<li><a class="reference internal" href="#comments">Comments</a></li>
+<li><a class="reference internal" href="#escaping-mechanism">Escaping Mechanism</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#habits-to-avoid">Habits to Avoid</a></li>
+<li><a class="reference internal" href="#suggested-sections">Suggested Sections</a></li>
+<li><a class="reference internal" href="#resources">Resources</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+<li><a class="reference internal" href="#copyright">Copyright</a></li>
+</ul>
+</section>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>对于那些以前写过 PEP 的人来说，<a class="reference internal" href="#template">有一个模板</a></p>
+</div>
+<section id="abstract">
+<h2><a class="toc-backref" href="#abstract">摘要</a></h2>
+<p>本 PEP 为创建你自己的 reStructuredText PEP 提供了一个模板或示例模板。结合 PEP1 <a class="footnote-reference brackets" href="#id7" id="id1">1</a> 中的内容指南，这应该能让你很容易地使自己的 PEP 符合下面列出的格式。</p>
+<p>注意：如果你通过网络阅读本 PEP，你应该首先抓取本 PEP 的文本（reStructuredText）源，以便完成以下步骤。 <strong>不要使用 html 文件作为你的模板！</strong></p>
+<p>这个（或任何）PEP 的来源可以在 PEPs 库中找到，可以在网上查看：<a class="reference external" href="https://github.com/python/peps/">https://github.com/python/peps/</a> 。</p>
+</section>
+<section id="rationale">
+<h2><a class="toc-backref" href="#rationale">理论依据</a></h2>
+<p>如果你打算提交 PEP，你必须使用这个模板，并结合下面的格式指南，以确保你提交的 PEP 不会因为形式而被自动拒绝。</p>
+<p>ReStructuredText为PEP作者提供了有用的功能和表现力，同时保持了源文本的易读性。经过处理的 HTML 形式使读者可以使用这些功能：实时超链接、风格化文本、表格、图像和自动目录等优点。</p>
+</section>
+<section id="how-to-use-this-template">
+<h2><a class="toc-backref" href="#how-to-use-this-template">如何使用此模板</a></h2>
+<p>要使用这个模板，你必须首先决定你的 PEP 是一个信息性的还是标准追踪性的 PEP。大多数 PEP 是标准追踪的，因为它们为 Python 语言或标准库提出了一个新特性。如果有疑问，请阅读 <a class="reference external" href="../pep-0001">PEP 1</a> 以了解细节，或者在 PEPs repo 上开一个跟踪问题以寻求帮助。</p>
+<p>一旦你决定你的PEP是哪种类型，就按照下面的指示去做。</p>
+<ul>
+<li>复制这个文件（是 <code class="docutils literal notranslate"><span class="pre">.rst</span></code> 文件，<strong>不</strong> 是 HTML！）并进行以下编辑。如果你还没有 PEP 号码分配，将新文件命名为 <code class="docutils literal notranslate"><span class="pre">pep-9999.rst</span></code>，如果你有，则命名为 <code class="docutils literal notranslate"><span class="pre">pep-NNN.rst</span></code>。欢迎有推送权限的人申请下一个可用的号码（忽略特殊区块 3000 和 8000，以及少量的特殊分配–目前是 666、754 和 801）并直接推送。</li>
+<li>用 “PEP: 9999” 或 “PEP: NNNN” 替换 “PEP: 12” 头，以匹配文件名。请注意，文件名应该用零填充（例如 <code class="docutils literal notranslate"><span class="pre">pep-0012.rst</span></code>），但文件头不应该（<code class="docutils literal notranslate"><span class="pre">PEP:</span> <span class="pre">12</span></code>）。</li>
+<li>将标题标题改为你的 PEP 的标题。</li>
+<li>改变作者头像，包括你的名字，以及你的电子邮件地址，可以选择。请务必认真遵守格式：你的名字必须出现在第一位，而且不能包含在括号里。你的电子邮件地址可以出现在第二位（也可以省略），如果出现，必须出现在角括号内。混淆你的电子邮件地址也是可以的”</li>
+<li>如果作者中没有人是 Python 的核心开发者，请包括一个赞助商的标题，其中包括赞助你的 PEP 的核心开发者的名字。</li>
+<li>对于许多 PEPs，讨论将在 <a class="reference external" href="mailto:python-ideas&#37;&#52;&#48;python&#46;org">python-ideas<span>&#64;</span>python<span>&#46;</span>org</a> 和/或 <a class="reference external" href="mailto:python-dev&#37;&#52;&#48;python&#46;org">python-dev<span>&#64;</span>python<span>&#46;</span>org</a>。如果有另一个邮件列表或公共论坛更适合讨论你的新特性，请在作者标题之后添加一个讨论-对象的标题。大多数信息性的 PEP 不需要讨论到标题。</li>
+<li>将状态头改为 “Draft”。</li>
+<li>对于标准追踪 PEPs，将类型标题改为 “Standards Track”。</li>
+<li>对于信息性 PEPs，将类型标题改为 “Informational”。</li>
+<li>对于标准追踪 PEPs，如果你的功能取决于对其他正在开发的 PEP 的接受程度，请在 Type 头之后添加 Requires 头。其值应该是你所依赖的 PEP 的 PEP 编号。如果你所依赖的特性是在最终的 PEP 中描述的，就不要添加这个标头。</li>
+<li>将 Created 标题改为今天的日期。一定要仔细遵守格式：必须是 <code class="docutils literal notranslate"><span class="pre">dd-mmm-yyyy</span></code> 格式，其中 <code class="docutils literal notranslate"><span class="pre">mmm</span></code> 是 3 个英文字母的月份缩写，即 Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec 中的一个。</li>
+<li>对于标准追踪 PEPs，在 Created 标题之后，添加一个 Python-Version 标题，并将其值设置为 Python 的下一个计划版本，即你的新特性有希望在其中首次出现的版本。不要在这里使用 alpha 或 beta 版本的名称。因此，如果 Python 的最后一个版本是 2.2 alpha 1，而你希望把你的新特性放到 Python 2.2中，请把标题设置为<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span><span class="o">-</span><span class="n">Version</span><span class="p">:</span> <span class="mf">2.2</span>
+</pre></div>
+</div>
+</li>
+<li>暂时不要管 Post-History；你将在每次将你的 PEP 发布到指定的讨论区（见上面的 Discussions-To header）时在这个标题上添加日期。如果你在 2001 年 8 月 14 日和 2001 年 9 月 3 日将你的 PEP 发布到列表中，那么 Post-History 的标题将是<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Post</span><span class="o">-</span><span class="n">History</span><span class="p">:</span> <span class="mi">14</span><span class="o">-</span><span class="n">Aug</span><span class="o">-</span><span class="mi">2001</span><span class="p">,</span> <span class="mi">03</span><span class="o">-</span><span class="n">Sept</span><span class="o">-</span><span class="mi">2001</span>
+</pre></div>
+</div>
+<p>你必须手动添加新的日期并提交它们（如果你没有推送权限，就用拉取请求）。</p>
+</li>
+<li>如果你的 PEP 淘汰了一个早期的 PEP，请添加一个 Replaces 头。这个头的值是你的新 PEP 所替代的 PEP的编号。 只有当较早的 PEP 处于 “final” 形式时，即要么接受，要么最终确定，要么拒绝，才会添加这个标头。如果你提交的是一个竞争性的想法，那么你就不是在替换一个旧的开放性 PEP。</li>
+<li>现在为你的 PEP 写出你的摘要、理由和其他内容，用你自己的文字取代所有这些胡言乱语的内容。请确保遵守下面的格式指南，特别是禁止使用制表符和缩进的要求。参见下面的 “建议的章节”，以获得需要包括的章节模板。</li>
+<li>更新你的参考文献和版权部分。通常你会把你的 PEP 放入公共领域，在这种情况下，只需留下版权部分。另外，你也可以使用 <a class="reference external" href="http://www.opencontent.org/openpub/">公开出版许可证</a> <a class="footnote-reference brackets" href="#id15" id="id16">5</a>，但还是强烈建议使用公有领域。</li>
+<li>让这个文件结尾的 Emacs 句子单独存在，包括 formfeed 字符（”^L”，或 <code class="docutils literal notranslate"><span class="pre">\f</span></code>）。</li>
+<li>针对 <a class="reference external" href="https://github.com/python/peps">https://github.com/python/peps</a> 仓库创建一个拉取请求。</li>
+</ul>
+<p>作为参考，以下是所有可能的头文件字段（括号内的所有字段都应该被替换掉，或者删除该字段，如果它有一个领先的 <code class="docutils literal notranslate"><span class="pre">*</span></code> 标记为可选字段，并且不适用于你的PEP）</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PEP</span><span class="p">:</span> <span class="p">[</span><span class="n">NNN</span><span class="p">]</span>
+<span class="n">Title</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="n">Author</span><span class="p">:</span> <span class="p">[</span><span class="n">Full</span> <span class="n">Name</span> <span class="o">&lt;</span><span class="n">email</span> <span class="n">at</span> <span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">&gt;</span><span class="p">]</span>
+<span class="n">Sponsor</span><span class="p">:</span> <span class="o">*</span><span class="p">[</span><span class="n">Full</span> <span class="n">Name</span> <span class="o">&lt;</span><span class="n">email</span> <span class="n">at</span> <span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">&gt;</span><span class="p">]</span>
+<span class="n">PEP</span><span class="o">-</span><span class="n">Delegate</span><span class="p">:</span>
+<span class="n">Discussions</span><span class="o">-</span><span class="n">To</span><span class="p">:</span> <span class="o">*</span><span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="n">Status</span><span class="p">:</span> <span class="n">Draft</span>
+<span class="n">Type</span><span class="p">:</span> <span class="p">[</span><span class="n">Standards</span> <span class="n">Track</span> <span class="o">|</span> <span class="n">Informational</span> <span class="o">|</span> <span class="n">Process</span><span class="p">]</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">rst</span>
+<span class="n">Requires</span><span class="p">:</span> <span class="o">*</span><span class="p">[</span><span class="n">NNN</span><span class="p">]</span>
+<span class="n">Created</span><span class="p">:</span> <span class="p">[</span><span class="n">DD</span><span class="o">-</span><span class="n">MMM</span><span class="o">-</span><span class="n">YYYY</span><span class="p">]</span>
+<span class="n">Python</span><span class="o">-</span><span class="n">Version</span><span class="p">:</span> <span class="o">*</span><span class="p">[</span><span class="n">M</span><span class="o">.</span><span class="n">N</span><span class="p">]</span>
+<span class="n">Post</span><span class="o">-</span><span class="n">History</span><span class="p">:</span> <span class="p">[</span><span class="n">DD</span><span class="o">-</span><span class="n">MMM</span><span class="o">-</span><span class="n">YYYY</span><span class="p">]</span>
+<span class="n">Replaces</span><span class="p">:</span> <span class="o">*</span><span class="p">[</span><span class="n">NNN</span><span class="p">]</span>
+<span class="n">Superseded</span><span class="o">-</span><span class="n">By</span><span class="p">:</span> <span class="o">*</span><span class="p">[</span><span class="n">NNN</span><span class="p">]</span>
+<span class="n">Resolution</span><span class="p">:</span>
+</pre></div>
+</div>
+</section>
+<section id="restructuredtext-pep-formatting-requirements">
+<h2><a class="toc-backref" href="#restructuredtext-pep-formatting-requirements">ReStructuredText PEP 格式化要求</a></h2>
+<p>下面是一个针对 PEP 的 reStructuredText 语法的总结。为了简单明了，我们省略了很多细节。更多细节请参见下面的 <a class="reference internal" href="#resources">Resources</a> 。在整个例子中使用了 <a class="reference internal" href="#literal-blocks">Literal blocks</a> （其中没有进行标记处理），以说明纯文本标记</p>
+<section id="general">
+<h3><a class="toc-backref" href="#general">通用</a></h3>
+<p>你必须遵守 Emacs 的惯例，在每句话的末尾加两个空格。你应该把你的段落填到第 70 栏，但在任何情况下，你的行都不能超过第 79 栏。如果你的代码样本超过了第 79 栏，你应该重写。</p>
+<p>Tab 字符绝对不能出现在文件中。PEP 应该包括本 PEP 底部举例的标准 Emacs 句子。</p>
+</section>
+<section id="section-headings">
+<h3><a class="toc-backref" href="#section-headings">节标题</a></h3>
+<p>PEP 的标题必须在第 0 栏开始，每个词的首字母必须像书名一样大写。首字母缩写应使用全大写。章节标题必须用下划线装饰，这是一个重复的标点符号，从第 0 栏开始，必须至少延伸到标题文本的右边缘（最少 4 个字符）。一级标题下划线为 “=”（等号），二级标题用 “-”（连字符），三级标题用 “’”（单引号或撇号）。 例如</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">First</span><span class="o">-</span><span class="n">Level</span> <span class="n">Title</span>
+<span class="o">=================</span>
+
+<span class="n">Second</span><span class="o">-</span><span class="n">Level</span> <span class="n">Title</span>
+<span class="o">------------------</span>
+
+<span class="n">Third</span><span class="o">-</span><span class="n">Level</span> <span class="n">Title</span>
+<span class="sd">&#39;&#39;&#39;&#39;&#39;&#39;</span><span class="s1">&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+<p>如果你的 PEP 中有超过三层的章节，你可以为第一层和第二层插入下划线/下划线装饰的标题，如下</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">============================</span>
+<span class="n">First</span><span class="o">-</span><span class="n">Level</span> <span class="n">Title</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span>
+<span class="o">============================</span>
+
+<span class="o">-----------------------------</span>
+<span class="n">Second</span><span class="o">-</span><span class="n">Level</span> <span class="n">Title</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span>
+<span class="o">-----------------------------</span>
+
+<span class="n">Third</span><span class="o">-</span><span class="n">Level</span> <span class="n">Title</span>
+<span class="o">=================</span>
+
+<span class="n">Fourth</span><span class="o">-</span><span class="n">Level</span> <span class="n">Title</span>
+<span class="o">------------------</span>
+
+<span class="n">Fifth</span><span class="o">-</span><span class="n">Level</span> <span class="n">Title</span>
+<span class="sd">&#39;&#39;&#39;&#39;&#39;&#39;</span><span class="s1">&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+<p>你的 PEP 中不应该有超过五级的章节。如果你有，你应该考虑重写它。</p>
+<p>你必须在一节正文的最后一行和下一节标题之间使用两个空行。如果一个小节的标题紧随一个章节的标题之后，中间只需一个空行即可。</p>
+<p>每一节的主体通常不缩进，尽管有些结构体确实使用缩进，如下所述。空行是用来分隔结构体的。</p>
+</section>
+<section id="paragraphs">
+<h3><a class="toc-backref" href="#paragraphs">段落</a></h3>
+<p>段落是左对齐的文本块，由空行分隔。段落不缩进，除非它们是缩进结构的一部分（如引用块或列表项）。</p>
+</section>
+<section id="inline-markup">
+<h3><a class="toc-backref" href="#inline-markup">行内标记</a></h3>
+<p>段落和其他文本块中的部分文本可以被定型。 例如</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Text may be marked as *emphasized* (single asterisk markup,
+typically shown in italics) or **strongly emphasized** (double
+asterisks, typically boldface).  ``Inline literals`` (using double
+backquotes) are typically rendered in a monospaced typeface.  No
+further markup recognition is done within the double backquotes,
+so they&#39;re safe for any kind of code snippets.
+</pre></div>
+</div>
+</section>
+<section id="block-quotes">
+<h3><a class="toc-backref" href="#block-quotes">块引用</a></h3>
+<p>段落和其他文本块中的部分文本可以被定型。 例如</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">paragraph</span><span class="o">.</span>
+
+    <span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">block</span> <span class="n">quote</span><span class="o">.</span>
+
+    <span class="n">A</span> <span class="n">block</span> <span class="n">quote</span> <span class="n">may</span> <span class="n">contain</span> <span class="n">many</span> <span class="n">paragraphs</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>方块引号用于引用其他来源的扩展段落。区块引号可以嵌套在其他主体元素中。每个缩进级别使用 4 个空格。</p>
+</section>
+<section id="literal-blocks">
+<h3><a class="toc-backref" href="#literal-blocks">Literal Blocks</a></h3>
+<p>Literal blocks are used for code samples or preformatted ASCII art. To
+indicate a literal block, preface the indented text block with
+“<code class="docutils literal notranslate"><span class="pre">::</span></code>” (two colons).  The literal block continues until the end of
+the indentation.  Indent the text block by 4 spaces.  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">typical</span> <span class="n">paragraph</span><span class="o">.</span>  <span class="n">A</span> <span class="n">literal</span> <span class="n">block</span> <span class="n">follows</span><span class="o">.</span>
+
+<span class="p">::</span>
+
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span>   <span class="c1"># this is program code, shown as-is</span>
+        <span class="nb">print</span> <span class="n">a</span>
+    <span class="nb">print</span> <span class="s2">&quot;it&#39;s...&quot;</span>
+    <span class="c1"># a literal block continues until the indentation ends</span>
+</pre></div>
+</div>
+<p>The paragraph containing only “<code class="docutils literal notranslate"><span class="pre">::</span></code>” will be completely removed from
+the output; no empty paragraph will remain.  “<code class="docutils literal notranslate"><span class="pre">::</span></code>” is also
+recognized at the end of any paragraph.  If immediately preceded by
+whitespace, both colons will be removed from the output.  When text
+immediately precedes the “<code class="docutils literal notranslate"><span class="pre">::</span></code>”, <em>one</em> colon will be removed from
+the output, leaving only one colon visible (i.e., “<code class="docutils literal notranslate"><span class="pre">::</span></code>” will be
+replaced by “<code class="docutils literal notranslate"><span class="pre">:</span></code>”).  For example, one colon will remain visible
+here:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Paragraph</span><span class="p">::</span>
+
+    <span class="n">Literal</span> <span class="n">block</span>
+</pre></div>
+</div>
+</section>
+<section id="lists">
+<h3><a class="toc-backref" href="#lists">Lists</a></h3>
+<p>Bullet list items begin with one of “-”, “*”, or “+” (hyphen,
+asterisk, or plus sign), followed by whitespace and the list item
+body.  List item bodies must be left-aligned and indented relative to
+the bullet; the text immediately after the bullet determines the
+indentation.  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="n">paragraph</span> <span class="ow">is</span> <span class="n">followed</span> <span class="n">by</span> <span class="n">a</span> <span class="nb">list</span><span class="o">.</span>
+
+<span class="o">*</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">first</span> <span class="n">bullet</span> <span class="nb">list</span> <span class="n">item</span><span class="o">.</span>  <span class="n">The</span> <span class="n">blank</span> <span class="n">line</span> <span class="n">above</span> <span class="n">the</span>
+  <span class="n">first</span> <span class="nb">list</span> <span class="n">item</span> <span class="ow">is</span> <span class="n">required</span><span class="p">;</span> <span class="n">blank</span> <span class="n">lines</span> <span class="n">between</span> <span class="nb">list</span> <span class="n">items</span>
+  <span class="p">(</span><span class="n">such</span> <span class="k">as</span> <span class="n">below</span> <span class="n">this</span> <span class="n">paragraph</span><span class="p">)</span> <span class="n">are</span> <span class="n">optional</span><span class="o">.</span>
+
+<span class="o">*</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">first</span> <span class="n">paragraph</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">second</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">the</span> <span class="nb">list</span><span class="o">.</span>
+
+  <span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">second</span> <span class="n">paragraph</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">second</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">the</span> <span class="nb">list</span><span class="o">.</span>
+  <span class="n">The</span> <span class="n">blank</span> <span class="n">line</span> <span class="n">above</span> <span class="n">this</span> <span class="n">paragraph</span> <span class="ow">is</span> <span class="n">required</span><span class="o">.</span>  <span class="n">The</span> <span class="n">left</span> <span class="n">edge</span>
+  <span class="n">of</span> <span class="n">this</span> <span class="n">paragraph</span> <span class="n">lines</span> <span class="n">up</span> <span class="k">with</span> <span class="n">the</span> <span class="n">paragraph</span> <span class="n">above</span><span class="p">,</span> <span class="n">both</span>
+  <span class="n">indented</span> <span class="n">relative</span> <span class="n">to</span> <span class="n">the</span> <span class="n">bullet</span><span class="o">.</span>
+
+  <span class="o">-</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">sublist</span><span class="o">.</span>  <span class="n">The</span> <span class="n">bullet</span> <span class="n">lines</span> <span class="n">up</span> <span class="k">with</span> <span class="n">the</span> <span class="n">left</span> <span class="n">edge</span> <span class="n">of</span>
+    <span class="n">the</span> <span class="n">text</span> <span class="n">blocks</span> <span class="n">above</span><span class="o">.</span>  <span class="n">A</span> <span class="n">sublist</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">new</span> <span class="nb">list</span> <span class="n">so</span> <span class="n">requires</span> <span class="n">a</span>
+    <span class="n">blank</span> <span class="n">line</span> <span class="n">above</span> <span class="ow">and</span> <span class="n">below</span><span class="o">.</span>
+
+<span class="o">*</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">third</span> <span class="n">item</span> <span class="n">of</span> <span class="n">the</span> <span class="n">main</span> <span class="nb">list</span><span class="o">.</span>
+
+<span class="n">This</span> <span class="n">paragraph</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">part</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">list</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Enumerated (numbered) list items are similar, but use an enumerator
+instead of a bullet.  Enumerators are numbers (1, 2, 3, …), letters
+(A, B, C, …; uppercase or lowercase), or Roman numerals (i, ii, iii,
+iv, …; uppercase or lowercase), formatted with a period suffix
+(“1.”, “2.”), parentheses (“(1)”, “(2)”), or a right-parenthesis
+suffix (“1)”, “2)”).  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">As</span> <span class="k">with</span> <span class="n">bullet</span> <span class="nb">list</span> <span class="n">items</span><span class="p">,</span> <span class="n">the</span> <span class="n">left</span> <span class="n">edge</span> <span class="n">of</span> <span class="n">paragraphs</span> <span class="n">must</span>
+   <span class="n">align</span><span class="o">.</span>
+
+<span class="mf">2.</span> <span class="n">Each</span> <span class="nb">list</span> <span class="n">item</span> <span class="n">may</span> <span class="n">contain</span> <span class="n">multiple</span> <span class="n">paragraphs</span><span class="p">,</span> <span class="n">sublists</span><span class="p">,</span> <span class="n">etc</span><span class="o">.</span>
+
+   <span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">second</span> <span class="n">paragraph</span> <span class="n">of</span> <span class="n">the</span> <span class="n">second</span> <span class="nb">list</span> <span class="n">item</span><span class="o">.</span>
+
+   <span class="n">a</span><span class="p">)</span> <span class="n">Enumerated</span> <span class="n">lists</span> <span class="n">may</span> <span class="n">be</span> <span class="n">nested</span><span class="o">.</span>
+   <span class="n">b</span><span class="p">)</span> <span class="n">Blank</span> <span class="n">lines</span> <span class="n">may</span> <span class="n">be</span> <span class="n">omitted</span> <span class="n">between</span> <span class="nb">list</span> <span class="n">items</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Definition lists are written like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">what</span>
+    <span class="n">Definition</span> <span class="n">lists</span> <span class="n">associate</span> <span class="n">a</span> <span class="n">term</span> <span class="k">with</span> <span class="n">a</span> <span class="n">definition</span><span class="o">.</span>
+
+<span class="n">how</span>
+    <span class="n">The</span> <span class="n">term</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">one</span><span class="o">-</span><span class="n">line</span> <span class="n">phrase</span><span class="p">,</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">definition</span> <span class="ow">is</span> <span class="n">one</span>
+    <span class="ow">or</span> <span class="n">more</span> <span class="n">paragraphs</span> <span class="ow">or</span> <span class="n">body</span> <span class="n">elements</span><span class="p">,</span> <span class="n">indented</span> <span class="n">relative</span> <span class="n">to</span>
+    <span class="n">the</span> <span class="n">term</span><span class="o">.</span>
+</pre></div>
+</div>
+</section>
+<section id="tables">
+<h3><a class="toc-backref" href="#tables">Tables</a></h3>
+<p>Simple tables are easy and compact:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=====</span>  <span class="o">=====</span>  <span class="o">=======</span>
+  <span class="n">A</span>      <span class="n">B</span>    <span class="n">A</span> <span class="ow">and</span> <span class="n">B</span>
+<span class="o">=====</span>  <span class="o">=====</span>  <span class="o">=======</span>
+<span class="kc">False</span>  <span class="kc">False</span>  <span class="kc">False</span>
+<span class="kc">True</span>   <span class="kc">False</span>  <span class="kc">False</span>
+<span class="kc">False</span>  <span class="kc">True</span>   <span class="kc">False</span>
+<span class="kc">True</span>   <span class="kc">True</span>   <span class="kc">True</span>
+<span class="o">=====</span>  <span class="o">=====</span>  <span class="o">=======</span>
+</pre></div>
+</div>
+<p>There must be at least two columns in a table (to differentiate from
+section titles).  Column spans use underlines of hyphens (“Inputs”
+spans the first two columns):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=====</span>  <span class="o">=====</span>  <span class="o">======</span>
+   <span class="n">Inputs</span>     <span class="n">Output</span>
+<span class="o">------------</span>  <span class="o">------</span>
+  <span class="n">A</span>      <span class="n">B</span>    <span class="n">A</span> <span class="ow">or</span> <span class="n">B</span>
+<span class="o">=====</span>  <span class="o">=====</span>  <span class="o">======</span>
+<span class="kc">False</span>  <span class="kc">False</span>  <span class="kc">False</span>
+<span class="kc">True</span>   <span class="kc">False</span>  <span class="kc">True</span>
+<span class="kc">False</span>  <span class="kc">True</span>   <span class="kc">True</span>
+<span class="kc">True</span>   <span class="kc">True</span>   <span class="kc">True</span>
+<span class="o">=====</span>  <span class="o">=====</span>  <span class="o">======</span>
+</pre></div>
+</div>
+<p>Text in a first-column cell starts a new row.  No text in the first
+column indicates a continuation line; the rest of the cells may
+consist of multiple lines.  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=====</span>  <span class="o">=========================</span>
+<span class="n">col</span> <span class="mi">1</span>  <span class="n">col</span> <span class="mi">2</span>
+<span class="o">=====</span>  <span class="o">=========================</span>
+<span class="mi">1</span>      <span class="n">Second</span> <span class="n">column</span> <span class="n">of</span> <span class="n">row</span> <span class="mf">1.</span>
+<span class="mi">2</span>      <span class="n">Second</span> <span class="n">column</span> <span class="n">of</span> <span class="n">row</span> <span class="mf">2.</span>
+       <span class="n">Second</span> <span class="n">line</span> <span class="n">of</span> <span class="n">paragraph</span><span class="o">.</span>
+<span class="mi">3</span>      <span class="o">-</span> <span class="n">Second</span> <span class="n">column</span> <span class="n">of</span> <span class="n">row</span> <span class="mf">3.</span>
+
+       <span class="o">-</span> <span class="n">Second</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">bullet</span>
+         <span class="nb">list</span> <span class="p">(</span><span class="n">row</span> <span class="mi">3</span><span class="p">,</span> <span class="n">column</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span>
+<span class="o">=====</span>  <span class="o">=========================</span>
+</pre></div>
+</div>
+</section>
+<section id="hyperlinks">
+<h3><a class="toc-backref" href="#hyperlinks">Hyperlinks</a></h3>
+<p>When referencing an external web page in the body of a PEP, you should
+include the title of the page in the text, with either an inline
+hyperlink reference to the URL or a footnote reference (see
+<a class="reference internal" href="#footnotes">Footnotes</a> below).  Do not include the URL in the body text of the
+PEP.</p>
+<p>Hyperlink references use backquotes and a trailing underscore to mark
+up the reference text; backquotes are optional if the reference text
+is a single word.  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>In this paragraph, we refer to the `Python web site`_.
+</pre></div>
+</div>
+<p>An explicit target provides the URL.  Put targets in a References
+section at the end of the PEP, or immediately after the reference.
+Hyperlink targets begin with two periods and a space (the “explicit
+markup start”), followed by a leading underscore, the reference text,
+a colon, and the URL (absolute or relative):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">_Python</span> <span class="n">web</span> <span class="n">site</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">org</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>The reference text and the target text must match (although the match
+is case-insensitive and ignores differences in whitespace).  Note that
+the underscore trails the reference text but precedes the target text.
+If you think of the underscore as a right-pointing arrow, it points
+<em>away</em> from the reference and <em>toward</em> the target.</p>
+<p>The same mechanism can be used for internal references.  Every unique
+section title implicitly defines an internal hyperlink target.  We can
+make a link to the Abstract section like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Here is a hyperlink reference to the `Abstract`_ section.  The
+backquotes are optional since the reference text is a single word;
+we can also just write: Abstract_.
+</pre></div>
+</div>
+<p>Footnotes containing the URLs from external targets will be generated
+automatically at the end of the References section of the PEP, along
+with footnote references linking the reference text to the footnotes.</p>
+<p>Text of the form “PEP x” or “RFC x” (where “x” is a number) will be
+linked automatically to the appropriate URLs.</p>
+</section>
+<section id="footnotes">
+<h3><a class="toc-backref" href="#footnotes">Footnotes</a></h3>
+<p>Footnote references consist of a left square bracket, a number, a
+right square bracket, and a trailing underscore:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="n">sentence</span> <span class="n">ends</span> <span class="k">with</span> <span class="n">a</span> <span class="n">footnote</span> <span class="n">reference</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="n">_</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Whitespace must precede the footnote reference.  Leave a space between
+the footnote reference and the preceding word.</p>
+<p>When referring to another PEP, include the PEP number in the body
+text, such as “<a class="reference external" href="../pep-0001">PEP 1</a>”.  The title may optionally appear.  Add a
+footnote reference following the title.  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Refer</span> <span class="n">to</span> <span class="n">PEP</span> <span class="mi">1</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="n">_</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Add a footnote that includes the PEP’s title and author.  It may
+optionally include the explicit URL on a separate line, but only in
+the References section.  Footnotes begin with “.. ” (the explicit
+markup start), followed by the footnote marker (no underscores),
+followed by the footnote body.  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">References</span>
+<span class="o">==========</span>
+
+<span class="o">..</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">PEP</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;PEP Purpose and Guidelines&quot;</span><span class="p">,</span> <span class="n">Warsaw</span><span class="p">,</span> <span class="n">Hylton</span>
+   <span class="p">(</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">peps</span><span class="o">/</span><span class="n">pep</span><span class="o">-</span><span class="mi">0001</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you decide to provide an explicit URL for a PEP, please use this as
+the URL template:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">peps</span><span class="o">/</span><span class="n">pep</span><span class="o">-</span><span class="n">xxxx</span>
+</pre></div>
+</div>
+<p>PEP numbers in URLs must be padded with zeros from the left, so as to
+be exactly 4 characters wide; however, PEP numbers in the text are
+never padded.</p>
+<p>During the course of developing your PEP, you may have to add, remove,
+and rearrange footnote references, possibly resulting in mismatched
+references, obsolete footnotes, and confusion.  Auto-numbered
+footnotes allow more freedom.  Instead of a number, use a label of the
+form “#word”, where “word” is a mnemonic consisting of alphanumerics
+plus internal hyphens, underscores, and periods (no whitespace or
+other characters are allowed).  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Refer</span> <span class="n">to</span> <span class="n">PEP</span> <span class="mi">1</span> <span class="p">[</span><span class="c1">#PEP-1]_ for more information.</span>
+
+<span class="n">References</span>
+<span class="o">==========</span>
+
+<span class="o">..</span> <span class="p">[</span><span class="c1">#PEP-1] PEP 1, &quot;PEP Purpose and Guidelines&quot;, Warsaw, Hylton</span>
+
+   <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">peps</span><span class="o">/</span><span class="n">pep</span><span class="o">-</span><span class="mi">0001</span>
+</pre></div>
+</div>
+<p>Footnotes and footnote references will be numbered automatically, and
+the numbers will always match.  Once a PEP is finalized, auto-numbered
+labels should be replaced by numbers for simplicity.</p>
+</section>
+<section id="images">
+<h3><a class="toc-backref" href="#images">Images</a></h3>
+<p>If your PEP contains a diagram, you may include it in the processed
+output using the “image” directive:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">image</span><span class="p">::</span> <span class="n">diagram</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+<p>Any browser-friendly graphics format is possible: .png, .jpeg, .gif,
+.tiff, etc.</p>
+<p>Since this image will not be visible to readers of the PEP in source
+text form, you should consider including a description or ASCII art
+alternative, using a comment (below).</p>
+</section>
+<section id="comments">
+<h3><a class="toc-backref" href="#comments">Comments</a></h3>
+<p>A comment block is an indented block of arbitrary text immediately
+following an explicit markup start: two periods and whitespace.  Leave
+the “..” on a line by itself to ensure that the comment is not
+misinterpreted as another explicit markup construct.  Comments are not
+visible in the processed document.  For the benefit of those reading
+your PEP in source form, please consider including a descriptions of
+or ASCII art alternatives to any images you include.  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">image</span><span class="p">::</span> <span class="n">dataflow</span><span class="o">.</span><span class="n">png</span>
+
+<span class="o">..</span>
+   <span class="n">Data</span> <span class="n">flows</span> <span class="kn">from</span> <span class="nn">the</span> <span class="nb">input</span> <span class="n">module</span><span class="p">,</span> <span class="n">through</span> <span class="n">the</span> <span class="s2">&quot;black box&quot;</span>
+   <span class="n">module</span><span class="p">,</span> <span class="ow">and</span> <span class="k">finally</span> <span class="n">into</span> <span class="p">(</span><span class="ow">and</span> <span class="n">through</span><span class="p">)</span> <span class="n">the</span> <span class="n">output</span> <span class="n">module</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>The Emacs stanza at the bottom of this document is inside a comment.</p>
+</section>
+<section id="escaping-mechanism">
+<h3><a class="toc-backref" href="#escaping-mechanism">Escaping Mechanism</a></h3>
+<p>reStructuredText uses backslashes (”<code class="docutils literal notranslate"><span class="pre">\</span></code>”) to override the special
+meaning given to markup characters and get the literal characters
+themselves.  To get a literal backslash, use an escaped backslash
+(”<code class="docutils literal notranslate"><span class="pre">\\</span></code>”).  There are two contexts in which backslashes have no
+special meaning: <a class="reference internal" href="#literal-blocks">literal blocks</a> and inline literals (see <a class="reference internal" href="#inline-markup">Inline
+Markup</a> above).  In these contexts, no markup recognition is done,
+and a single backslash represents a literal backslash, without having
+to double up.</p>
+<p>If you find that you need to use a backslash in your text, consider
+using inline literals or a literal block instead.</p>
+</section>
+</section>
+<section id="habits-to-avoid">
+<h2><a class="toc-backref" href="#habits-to-avoid">Habits to Avoid</a></h2>
+<p>Many programmers who are familiar with TeX often write quotation marks
+like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>`single-quoted&#39; or ``double-quoted&#39;&#39;
+</pre></div>
+</div>
+<p>Backquotes are significant in reStructuredText, so this practice
+should be avoided.  For ordinary text, use ordinary ‘single-quotes’ or
+“double-quotes”.  For inline literal text (see <a class="reference internal" href="#inline-markup">Inline Markup</a>
+above), use double-backquotes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>``literal text: in here, anything goes!``
+</pre></div>
+</div>
+</section>
+<section id="suggested-sections">
+<h2><a class="toc-backref" href="#suggested-sections">Suggested Sections</a></h2>
+<p>Various sections are found to be common across PEPs and are outlined in
+<a class="reference external" href="../pep-0001">PEP 1</a> <a class="footnote-reference brackets" href="#id7" id="id3">1</a>. Those sections are provided here for convenience.</p>
+<div class="highlight-default notranslate" id="template"><div class="highlight"><pre><span></span>Abstract
+========
+
+[A short (~200 word) description of the technical issue being addressed.]
+
+
+Motivation
+==========
+
+[Clearly explain why the existing language specification is inadequate to address the problem that the PEP solves.]
+
+
+Rationale
+=========
+
+[Describe why particular design decisions were made.]
+
+
+Specification
+=============
+
+[Describe the syntax and semantics of any new language feature.]
+
+
+Backwards Compatibility
+=======================
+
+[Describe potential impact and severity on pre-existing code.]
+
+
+Security Implications
+=====================
+
+[How could a malicious user take advantage of this new feature?]
+
+
+How to Teach This
+=================
+
+[How to teach users, new and experienced, how to apply the PEP to their work.]
+
+
+Reference Implementation
+========================
+
+[Link to any existing implementation and details about its state, e.g. proof-of-concept.]
+
+
+Rejected Ideas
+==============
+
+[Why certain ideas that were brought while discussing this PEP were not ultimately pursued.]
+
+
+Open Issues
+===========
+
+[Any points that are still being decided/discussed.]
+
+
+References
+==========
+
+[A collection of URLs used as references through the PEP.]
+
+
+Copyright
+=========
+
+This document is placed in the public domain or under the
+CC0-1.0-Universal license, whichever is more permissive.
+
+
+
+..
+   Local Variables:
+   mode: indented-text
+   indent-tabs-mode: nil
+   sentence-end-double-space: t
+   fill-column: 70
+   coding: utf-8
+   End:
+</pre></div>
+</div>
+</section>
+<section id="resources">
+<h2><a class="toc-backref" href="#resources">Resources</a></h2>
+<p>Many other constructs and variations are possible.  For more details
+about the reStructuredText markup, in increasing order of
+thoroughness, please see:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://docutils.sourceforge.net/docs/rst/quickstart.html">A ReStructuredText Primer</a> <a class="footnote-reference brackets" href="#id17" id="id18">6</a>, a gentle introduction.</li>
+<li><a class="reference external" href="http://docutils.sourceforge.net/docs/rst/quickref.html">Quick reStructuredText</a> <a class="footnote-reference brackets" href="#id19" id="id20">7</a>, a users’ quick reference.</li>
+<li><a class="reference external" href="http://docutils.sourceforge.net/spec/rst/reStructuredText.html">reStructuredText Markup Specification</a> <a class="footnote-reference brackets" href="#id21" id="id22">8</a>, the final authority.</li>
+</ul>
+<p>The processing of reStructuredText PEPs is done using <a class="reference external" href="http://docutils.sourceforge.net/">Docutils</a> <a class="footnote-reference brackets" href="#id8" id="id10">2</a>.  If
+you have a question or require assistance with reStructuredText or
+Docutils, please <a class="reference external" href="mailto:docutils-users&#37;&#52;&#48;lists&#46;sourceforge&#46;net?subject=PEPs">post a message</a> <a class="footnote-reference brackets" href="#id11" id="id12">3</a> to the <a class="reference external" href="http://docutils.sf.net/docs/user/mailing-lists.html#docutils-users">Docutils-users mailing
+list</a> <a class="footnote-reference brackets" href="#id13" id="id14">4</a>.  The <a class="reference external" href="http://docutils.sourceforge.net/">Docutils project web site</a> <a class="footnote-reference brackets" href="#id8" id="id9">2</a> has more information.</p>
+</section>
+<section id="references">
+<h2><a class="toc-backref" href="#references">References</a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="id7"><span class="brackets">1</span><span class='fn-backref''><em> (<a href='#id1'>1</a>, <a href='#id3'>2</a>) </em></span></dt>
+<dd><a class="reference external" href="../pep-0001">PEP 1</a>, PEP Purpose and Guidelines, Warsaw, Hylton
+(<a class="reference external" href="http://www.python.org/dev/peps/pep-0001">http://www.python.org/dev/peps/pep-0001</a>)</dd>
+<dt class="label" id="id8"><span class="brackets">2</span><span class='fn-backref''><em> (<a href='#id9'>1</a>, <a href='#id10'>2</a>) </em></span></dt>
+<dd><a class="reference external" href="http://docutils.sourceforge.net/">http://docutils.sourceforge.net/</a></dd>
+<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id12">3</a></span></dt>
+<dd><a class="reference external" href="mailto:docutils-users&#37;&#52;&#48;lists&#46;sourceforge&#46;net?subject=PEPs">mailto:docutils-users<span>&#64;</span>lists<span>&#46;</span>sourceforge<span>&#46;</span>net?subject=PEPs</a></dd>
+<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id14">4</a></span></dt>
+<dd><a class="reference external" href="http://docutils.sf.net/docs/user/mailing-lists.html#docutils-users">http://docutils.sf.net/docs/user/mailing-lists.html#docutils-users</a></dd>
+<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="#id16">5</a></span></dt>
+<dd><a class="reference external" href="http://www.opencontent.org/openpub/">http://www.opencontent.org/openpub/</a></dd>
+<dt class="label" id="id17"><span class="brackets"><a class="fn-backref" href="#id18">6</a></span></dt>
+<dd><a class="reference external" href="http://docutils.sourceforge.net/docs/rst/quickstart.html">http://docutils.sourceforge.net/docs/rst/quickstart.html</a></dd>
+<dt class="label" id="id19"><span class="brackets"><a class="fn-backref" href="#id20">7</a></span></dt>
+<dd><a class="reference external" href="http://docutils.sourceforge.net/docs/rst/quickref.html">http://docutils.sourceforge.net/docs/rst/quickref.html</a></dd>
+<dt class="label" id="id21"><span class="brackets"><a class="fn-backref" href="#id22">8</a></span></dt>
+<dd><a class="reference external" href="http://docutils.sourceforge.net/spec/rst/reStructuredText.html">http://docutils.sourceforge.net/spec/rst/reStructuredText.html</a></dd>
+</dl>
+</section>
+<section id="copyright">
+<h2><a class="toc-backref" href="#copyright">Copyright</a></h2>
+<p>This document is placed in the public domain or under the
+CC0-1.0-Universal license, whichever is more permissive.</p>
+</section>
+</section>
+<p>Source: <a class="reference external" href="https://github.com/python/peps/blob/master/pep-0012.rst">https://github.com/python/peps/blob/master/pep-0012.rst</a></p>
+<p>Last modified: <a class="reference external" href="https://github.com/python/peps/commits/master/pep-0012.rst">2021-03-22 21:00:22 GMT</a></p>
+
+        </article>
+        <nav id="pep-sidebar">
+            <h2>Contents</h2>
+            <ul>
+<li><a class="reference internal" href="#">PEP 12 – Sample reStructuredText PEP Template</a><ul>
+<li><a class="reference internal" href="#contents">Contents</a></li>
+<li><a class="reference internal" href="#abstract">摘要</a></li>
+<li><a class="reference internal" href="#rationale">理论依据</a></li>
+<li><a class="reference internal" href="#how-to-use-this-template">如何使用此模板</a></li>
+<li><a class="reference internal" href="#restructuredtext-pep-formatting-requirements">ReStructuredText PEP 格式化要求</a><ul>
+<li><a class="reference internal" href="#general">通用</a></li>
+<li><a class="reference internal" href="#section-headings">节标题</a></li>
+<li><a class="reference internal" href="#paragraphs">段落</a></li>
+<li><a class="reference internal" href="#inline-markup">行内标记</a></li>
+<li><a class="reference internal" href="#block-quotes">块引用</a></li>
+<li><a class="reference internal" href="#literal-blocks">Literal Blocks</a></li>
+<li><a class="reference internal" href="#lists">Lists</a></li>
+<li><a class="reference internal" href="#tables">Tables</a></li>
+<li><a class="reference internal" href="#hyperlinks">Hyperlinks</a></li>
+<li><a class="reference internal" href="#footnotes">Footnotes</a></li>
+<li><a class="reference internal" href="#images">Images</a></li>
+<li><a class="reference internal" href="#comments">Comments</a></li>
+<li><a class="reference internal" href="#escaping-mechanism">Escaping Mechanism</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#habits-to-avoid">Habits to Avoid</a></li>
+<li><a class="reference internal" href="#suggested-sections">Suggested Sections</a></li>
+<li><a class="reference internal" href="#resources">Resources</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+<li><a class="reference internal" href="#copyright">Copyright</a></li>
+</ul>
+</li>
+</ul>
+
+            <br />
+            <strong><a href="https://github.com/python/peps/blob/master/pep-0012.rst">Page Source (GitHub)</a></strong>
+        </nav>
+    </section>
+    <script src="../_static/doctools.js"></script>
+</body>
+</html>

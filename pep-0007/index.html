@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PEP 7 – Style Guide for C Code | peps.python.org</title>
+    <link rel="shortcut icon" href="../_static/py.png"/>
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/mq.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <meta name="description" content="Python Enhancement Proposals (PEPs)"/>
+</head>
+<body>
+    <section id="pep-page-section">
+        <header>
+            <h1>Python Enhancement Proposals</h1>
+            <ul class="breadcrumbs">
+                <li><a href="https://www.python.org/" title="The Python Programming Language">Python</a> &raquo; </li>
+                <li><a href="../pep-0000/">PEP Index</a> &raquo; </li>
+                <li>PEP 7 – Style Guide for C Code</li>
+            </ul>
+        </header>
+        <article>
+            <section id="pep-content">
+<h1 class="page-title">PEP 7 – Style Guide for C Code</h1>
+<dl class="rfc2822 field-list simple">
+<dt class="field-odd">PEP</dt>
+<dd class="field-odd">7</dd>
+<dt class="field-even">Title</dt>
+<dd class="field-even">C 代码的风格指南</dd>
+<dt class="field-odd">Author</dt>
+<dd class="field-odd">Guido van Rossum &lt;guido&#32;&#97;t&#32;python.org&gt;, Barry Warsaw &lt;barry&#32;&#97;t&#32;python.org&gt;</dd>
+<dt class="field-even">Status</dt>
+<dd class="field-even">Active</dd>
+<dt class="field-odd">Type</dt>
+<dd class="field-odd">Process</dd>
+<dt class="field-even">Created</dt>
+<dd class="field-even">05-Jul-2001</dd>
+<dt class="field-odd">Post-History</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<hr class="docutils" />
+<section id="contents">
+<h2>Contents</h2>
+<ul class="simple">
+<li><a class="reference internal" href="#introduction">介绍</a></li>
+<li><a class="reference internal" href="#c-dialect">C 方言</a></li>
+<li><a class="reference internal" href="#code-lay-out">代码布局</a></li>
+<li><a class="reference internal" href="#naming-conventions">命名公约</a></li>
+<li><a class="reference internal" href="#documentation-strings">文档字符串</a></li>
+<li><a class="reference internal" href="#references">参考</a></li>
+<li><a class="reference internal" href="#copyright">版权声明</a></li>
+</ul>
+</section>
+<section id="introduction">
+<h2><a class="toc-backref" href="#introduction">介绍</a></h2>
+<p>本文档给出了构成 Python 的 C 语言实现的 C 代码的编码规则。请参见描述 Python 代码风格指南的配套信息性 PEP <a class="footnote-reference brackets" href="#id2" id="id1">1</a> 。</p>
+<p>注意，规则是用来被打破的。打破某项规则的两个好理由：</p>
+<ol class="arabic simple">
+<li>当应用该规则会使代码的可读性降低，即使是对于习惯于阅读遵循规则的代码的人来说。</li>
+<li>要与周围的代码保持一致，这些代码也会破坏它（也许是出于历史原因）– 尽管这也是一个清理别人的烂摊子的机会（真正的 XP 风格）。</li>
+</ol>
+</section>
+<section id="c-dialect">
+<h2><a class="toc-backref" href="#c-dialect">C 方言</a></h2>
+<ul>
+<li>3.6 之前的 Python 版本使用 ANSI/ISO 标准 C (1989 年版本的标准)。这意味着（除其他外）所有的声明都必须在块的顶部（不一定在函数的顶部）。</li>
+<li>大于或等于 3.6 的 Python 版本使用 C89 与几个精选的 C99 特性：<ul class="simple">
+<li>标准整数类型在 <code class="docutils literal notranslate"><span class="pre">&lt;stdint.h&gt;</span></code> 和 <code class="docutils literal notranslate"><span class="pre">&lt;inttypes.h&gt;</span></code>。我们需要固定宽度的整数类型。</li>
+<li><code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">inline</span></code> 函数</li>
+<li>指定的初始化器（对类型声明来说特别好）</li>
+<li>混杂的声明</li>
+<li>布尔运算</li>
+<li>C++ 风格的行注释</li>
+</ul>
+<p>未来的 C99 特性可能会被添加到这个列表中，这取决于编译器的支持（主要是明显的 MSVC）。</p>
+</li>
+<li>不要使用 GCC 扩展（例如，不要写没有尾部反斜线的多行字符串）。</li>
+<li>所有的函数声明和定义必须使用完整的原型（即指定所有参数的类型）。</li>
+<li>只在 Python 3.6 或更高版本中使用 C++ 风格的 // 单行注释。</li>
+<li>在主要的编译器（gcc、VC++ 和其他一些）中没有编译器警告。</li>
+</ul>
+</section>
+<section id="code-lay-out">
+<h2><a class="toc-backref" href="#code-lay-out">代码布局</a></h2>
+<ul>
+<li>使用4个空格的缩进，完全没有标签。</li>
+<li>任何一行的长度都不应超过79个字符。如果这条规则和前面的规则加在一起也没有给你足够的空间来编码，你的代码就太复杂了 – 考虑使用子程序”</li>
+<li>任何一行都不应以空白结束。如果你认为你需要大量的尾部空白，那就再想想吧 – 有人的编辑可能会把它作为例行公事来删除。</li>
+<li>函数定义风格：函数名在第 1 栏，最外层的大括号在第 1 栏，局部变量声明后为空行<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>static int
+extra_ivars(PyTypeObject *type, PyTypeObject *base)
+{
+    int t_size = PyType_BASICSIZE(type);
+    int b_size = PyType_BASICSIZE(base);
+
+    assert(t_size &gt;= b_size); /* type smaller than base! */
+    ...
+    return 1;
+}
+</pre></div>
+</div>
+</li>
+<li>代码结构：在 <code class="docutils literal notranslate"><span class="pre">if</span></code>、<code class="docutils literal notranslate"><span class="pre">for</span></code> 等关键字和下面的左括号之间有一个空格；括号内没有空格；到处都需要大括号，即使在 C 允许省略的地方也是如此，但不要在你没有修改的代码中添加大括号。所有新的 C 代码都需要大括号。大括号的格式应如图所示<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">mro</span> <span class="o">!=</span> <span class="n">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li>返回语句不应该有多余的括号<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="n">albatross</span><span class="p">;</span> <span class="o">/*</span> <span class="n">correct</span> <span class="o">*/</span>
+<span class="k">return</span><span class="p">(</span><span class="n">albatross</span><span class="p">);</span> <span class="o">/*</span> <span class="n">incorrect</span> <span class="o">*/</span>
+</pre></div>
+</div>
+</li>
+<li>函数和宏的调用方式：<code class="docutils literal notranslate"><span class="pre">foo(a,</span> <span class="pre">b,</span> <span class="pre">c)</span></code> – 开放的括号前没有空格，括号内没有空格，逗号前没有空格，每个逗号后有一个空格。</li>
+<li>总是在赋值、布尔和比较运算符周围加上空格。在使用大量运算符的表达式中，在最外层（优先级最低）的运算符周围添加空格。</li>
+<li>断开长行：如果可以，在最外层参数列表的逗号之后断开。总是适当地缩进续行，例如<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PyErr_Format</span><span class="p">(</span><span class="n">PyExc_TypeError</span><span class="p">,</span>
+             <span class="s2">&quot;cannot create &#39;</span><span class="si">%.100s</span><span class="s2">&#39; instances&quot;</span><span class="p">,</span>
+             <span class="nb">type</span><span class="o">-&gt;</span><span class="n">tp_name</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li>当你在二进制运算符处断开一个长表达式时，运算符会在前一行的末尾，大括号的格式应该如图所示。例如 ::”<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nb">type</span><span class="o">-&gt;</span><span class="n">tp_dictoffset</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">base</span><span class="o">-&gt;</span><span class="n">tp_dictoffset</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span>
+    <span class="nb">type</span><span class="o">-&gt;</span><span class="n">tp_dictoffset</span> <span class="o">==</span> <span class="n">b_size</span> <span class="o">&amp;&amp;</span>
+    <span class="p">(</span><span class="n">size_t</span><span class="p">)</span><span class="n">t_size</span> <span class="o">==</span> <span class="n">b_size</span> <span class="o">+</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">PyObject</span> <span class="o">*</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="o">/*</span> <span class="s2">&quot;Forgive&quot;</span> <span class="n">adding</span> <span class="n">a</span> <span class="vm">__dict__</span> <span class="n">only</span> <span class="o">*/</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li>在函数、结构定义和函数内部的主要部分周围放上空行。</li>
+<li>注释放在其描述的代码之前。</li>
+<li>所有的函数和全局变量都应该被声明为静态的，除非它们将成为已发布的接口的一部分</li>
+<li>对于外部函数和变量，我们总是在 “Include” 目录下的适当头文件中进行声明，该文件使用 <code class="docutils literal notranslate"><span class="pre">PyAPI_FUNC()</span></code> 宏，像这样<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PyAPI_FUNC</span><span class="p">(</span><span class="n">PyObject</span> <span class="o">*</span><span class="p">)</span> <span class="n">PyObject_Repr</span><span class="p">(</span><span class="n">PyObject</span> <span class="o">*</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="naming-conventions">
+<h2><a class="toc-backref" href="#naming-conventions">命名公约</a></h2>
+<ul class="simple">
+<li>对公共函数使用 <code class="docutils literal notranslate"><span class="pre">Py</span></code> 前缀；对静态函数绝不使用。<code class="docutils literal notranslate"><span class="pre">Py_</span></code> 前缀保留给全局服务例程，如 <code class="docutils literal notranslate"><span class="pre">Py_FatalError</span></code>；特定的例程组（如特定的对象类型 API）使用更长的前缀，如 <code class="docutils literal notranslate"><span class="pre">PyString_</span></code> 用于字符串函数。</li>
+<li>公共函数和变量使用带下划线的 MixedCase，像这样：<code class="docutils literal notranslate"><span class="pre">PyObject_GetAttr</span></code>、<code class="docutils literal notranslate"><span class="pre">Py_BuildValue</span></code>、<code class="docutils literal notranslate"><span class="pre">PyExc_TypeError</span></code>。</li>
+<li>有时候，一个 “internal” 函数必须对加载器可见；我们使用 <code class="docutils literal notranslate"><span class="pre">_Py</span></code> 前缀来表示，例如：<code class="docutils literal notranslate"><span class="pre">_PyObject_Dump</span></code>。</li>
+<li>宏应该有一个 MixedCase 前缀，然后使用大写字母，例如：<code class="docutils literal notranslate"><span class="pre">PyString_AS_STRING</span></code>、<code class="docutils literal notranslate"><span class="pre">Py_PRINT_RAW</span></code>。</li>
+</ul>
+</section>
+<section id="documentation-strings">
+<h2><a class="toc-backref" href="#documentation-strings">文档字符串</a></h2>
+<ul>
+<li>使用 <code class="docutils literal notranslate"><span class="pre">PyDoc_STR()</span></code> 或 <code class="docutils literal notranslate"><span class="pre">PyDoc_STRVAR()</span></code> 宏来处理文档字符串，以支持在没有文档字符串的情况下构建 Python (<code class="docutils literal notranslate"><span class="pre">./configure</span> <span class="pre">--without-doc-strings</span></code>)。<p>对于需要支持高于 2.3 版本的 Python 的 C 语言代码，你可以在包括 <code class="docutils literal notranslate"><span class="pre">Python.h</span></code> 之后包括这个</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#ifndef PyDoc_STR</span>
+<span class="c1">#define PyDoc_VAR(name)         static char name[]</span>
+<span class="c1">#define PyDoc_STR(str)          (str)</span>
+<span class="c1">#define PyDoc_STRVAR(name, str) PyDoc_VAR(name) = PyDoc_STR(str)</span>
+<span class="c1">#endif</span>
+</pre></div>
+</div>
+</li>
+<li>每个函数文档字符串的第一行应该是一个 “签名行”，给出参数和返回值的简要概述。比如说<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PyDoc_STRVAR</span><span class="p">(</span><span class="n">myfunction__doc__</span><span class="p">,</span>
+<span class="s2">&quot;myfunction(name, value) -&gt; bool</span><span class="se">\n\n\</span>
+<span class="s2">Determine whether name and value make a valid pair.&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>在签名行和说明文字之间一定要有一个空行。</p>
+<p>如果函数的返回值总是 None（因为没有有意义的返回值），不要包括返回类型的指示。</p>
+</li>
+<li>在编写多行文档字符串时，请确保总是使用反斜线连续，如上面的例子，或字符串字面连接<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PyDoc_STRVAR</span><span class="p">(</span><span class="n">myfunction__doc__</span><span class="p">,</span>
+<span class="s2">&quot;myfunction(name, value) -&gt; bool</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+<span class="s2">&quot;Determine whether name and value make a valid pair.&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>虽然有些 C 语言编译器在接受字符串字头时，不需要使用</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">BAD</span> <span class="o">--</span> <span class="n">don</span><span class="s1">&#39;t do this! */</span>
+<span class="n">PyDoc_STRVAR</span><span class="p">(</span><span class="n">myfunction__doc__</span><span class="p">,</span>
+<span class="s2">&quot;myfunction(name, value) -&gt; bool</span><span class="se">\n\n</span>
+<span class="n">Determine</span> <span class="n">whether</span> <span class="n">name</span> <span class="ow">and</span> <span class="n">value</span> <span class="n">make</span> <span class="n">a</span> <span class="n">valid</span> <span class="n">pair</span><span class="o">.</span><span class="s2">&quot;);</span>
+</pre></div>
+</div>
+<p>不是所有的人都这样做；众所周知，MSVC 编译器会抱怨这一点。</p>
+</li>
+</ul>
+</section>
+<section id="references">
+<h2><a class="toc-backref" href="#references">参考</a></h2>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><a class="reference external" href="../pep-0008">PEP 8</a>，”Python代码的风格指南”，van Rossum, Warsaw（<a class="reference external" href="http://www.python.org/dev/peps/pep-0008">http://www.python.org/dev/peps/pep-0008</a>）</dd>
+</dl>
+</section>
+<section id="copyright">
+<h2><a class="toc-backref" href="#copyright">版权声明</a></h2>
+<p>本文档已被置于公共领域。</p>
+</section>
+</section>
+<p>Source: <a class="reference external" href="https://github.com/python/peps/blob/master/pep-0007.txt">https://github.com/python/peps/blob/master/pep-0007.txt</a></p>
+<p>Last modified: <a class="reference external" href="https://github.com/python/peps/commits/master/pep-0007.txt">2017-11-11 19:28:55 GMT</a></p>
+
+        </article>
+        <nav id="pep-sidebar">
+            <h2>Contents</h2>
+            <ul>
+<li><a class="reference internal" href="#">PEP 7 – Style Guide for C Code</a><ul>
+<li><a class="reference internal" href="#contents">Contents</a></li>
+<li><a class="reference internal" href="#introduction">介绍</a></li>
+<li><a class="reference internal" href="#c-dialect">C 方言</a></li>
+<li><a class="reference internal" href="#code-lay-out">代码布局</a></li>
+<li><a class="reference internal" href="#naming-conventions">命名公约</a></li>
+<li><a class="reference internal" href="#documentation-strings">文档字符串</a></li>
+<li><a class="reference internal" href="#references">参考</a></li>
+<li><a class="reference internal" href="#copyright">版权声明</a></li>
+</ul>
+</li>
+</ul>
+
+            <br />
+            <strong><a href="https://github.com/python/peps/blob/master/pep-0007.txt">Page Source (GitHub)</a></strong>
+        </nav>
+    </section>
+    <script src="../_static/doctools.js"></script>
+</body>
+</html>
